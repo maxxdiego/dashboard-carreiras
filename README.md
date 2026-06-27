@@ -1,8 +1,9 @@
 # Dashboard CPS Carreiras (PoC)
 
-## 🌐 Acesso:
+### 🌐 Acesso:
+[https://maxxdiego.github.io/dashboard-carreiras](https://maxxdiego.github.io/dashboard-carreiras)
 
-Página online: [https://maxxdiego.github.io/dashboard-carreiras](https://maxxdiego.github.io/dashboard-carreiras)
+## Introdução
 
 Painel analítico web para visualização de indicadores de mercado, talentos, competências, gênero, qualidade de dados e inferências avançadas, com foco em apoiar decisões de atração, retenção e desenvolvimento de talentos no contexto do CPS Carreiras.
 
