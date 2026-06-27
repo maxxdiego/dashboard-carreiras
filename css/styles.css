@@ -207,8 +207,8 @@ body {
       2 + 10px
   );
   top: 124px;
-  width: 182px;
-  height: 182px;
+  width: 162px;
+  height: 162px;
   border-radius: 9999px;
   background: linear-gradient(180deg, #7e3fd8 0%, #7b3fe0 100%);
   color: #fff;
@@ -222,13 +222,13 @@ body {
 }
 
 .hero-badge-title {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 300;
   line-height: 2;
 }
 
 .hero-badge-pencil {
-  font-size: 18px;
+  font-size: 16px;
   color: #fff;
 }
 
