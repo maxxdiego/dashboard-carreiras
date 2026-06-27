@@ -19,8 +19,6 @@
       <div class="hero-topbar page-wrap">
         <div class="hero-topbar-left">
           <button class="hero-icon-btn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
-          <button class="hero-icon-btn" aria-label="Compartilhar"><i class="fa-solid fa-share-nodes"></i></button>
-          <button class="hero-icon-btn" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
 
         <img class="hero-brand" src="assets/header-logo.png" alt="CARREIRAS" />
@@ -48,14 +46,13 @@
 
   <main class="page-wrap py-8 space-y-6">
 
-    <!-- DASHBOARD DE CARREIRAS E EMPREGABILIDADE -->
-    <div class="section-title-wrap-1">
-      <nav class="section-title">
-        <i class="section-title-icon fa-solid fa-chart-line" aria-hidden="true"></i>
-        <div class="section-title-text">
-          <span class="section-title-title">Dashboard de Carreiras e Empregabilidade</span>
-          <p class="section-title-subtitle">Acompanhe indicadores-chave para embasar estratégias de carreira e
-            empregabilidade.</p>
+    <!-- Main title -->
+    <div class="main-title-wrap">
+      <nav class="main-title">
+        <i class="main-title-icon fa-solid fa-chart-line" aria-hidden="true"></i>
+        <div class="main-title-text">
+          <span class="main-title-text">Dashboard</span>
+          <p class="main-title-subtitle">Acompanhe indicadores, desempenho e insights em um único lugar.</p>
         </div>
       </nav>
     </div>
@@ -77,7 +74,8 @@
           <span>Categoria</span>
           <select id="filterCategory">
             <option value="">Todas</option>
-            <option value="panorama">Panorama Geral</option>
+            <option value="" disabled>------------ Carreiras e empregabilidade ------------</option>
+            <option value="panorama">Visão Geral</option>
             <option value="mercado">Mercado de Trabalho</option>
             <option value="empresas">Top Empresas</option>
             <option value="cargos">Cargos</option>
@@ -88,6 +86,17 @@
             <option value="marca">Marca Empregadora</option>
             <option value="valores">O que os Profissionais Valorizam</option>
             <option value="perfis">Exemplos de Perfis</option>
+            <option value="" disabled>-------------------- Talent Insights --------------------</option>
+            <option value="overview">Visão Geral</option>
+            <option value="competenciasRG">Competências — Ranking geral</option>
+            <option value="competenciasTD">Competências tech e dados</option>
+            <option value="gaps">Gaps e Pressão</option>
+            <option value="demandaFutura">Demanda Futura</option>
+            <option value="desiguldadeGenero">Desigualdade de Gênero</option>
+            <option value="educacaoCE">Educação e Competências Emergentes</option>
+            <option value="qualidadeDados">Qualidade dos Dados</option>
+            <option value="inferenciasAvancadas">Inferências Avançadas</option>
+            <option value="alertasSugestoes">Alertas e Sugestões</option>
           </select>
         </label>
       </div>
@@ -101,14 +110,29 @@
       </div>
     </section>
 
+    <!-- CARREIRAS E EMPREGABILIDADE -->
+    <div class="section-title-wrap-1">
+      <nav class="section-title">
+        <i class="section-title-icon fa-solid fa-briefcase" aria-hidden="true"></i>
+        <div class="section-title-text">
+          <span class="section-title-text">Carreiras e Empregabilidade</span>
+          <p class="section-title-subtitle">Acompanhe indicadores-chave para embasar estratégias de carreira e
+            empregabilidade.</p>
+        </div>
+      </nav>
+    </div>
+
     <!-- Panorama Geral -->
-    <section class="panorama-geral" data-category="panorama">
-      <h2 class="panorama-title">Panorama Geral</h2>
-      <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="kpiGrid"></section>
-    </section>
+    <details class="accordion" data-category="panorama" open>
+      <summary class="panorama-title">Visão Geral</summary>
+
+      <section class="panorama-geral">
+        <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="kpiGrid"></section>
+      </section>
+    </details>
 
     <!-- Mercado de Trabalho -->
-    <details class="accordion mercado-setores" data-category="mercado">
+    <details class="accordion mercado-setores" data-category="mercado" open>
       <summary>
         <span class="sum-left"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Mercado de Trabalho —
           Setores</span>
@@ -335,7 +359,8 @@
 
     <!-- Fluxo de Talentos -->
     <details class="accordion fluxo-wrap" data-category="fluxo">
-      <summary><span class="sum-left"><i class="fa-solid fa-right-left" aria-hidden="true"></i>Fluxo de Talentos</span>
+      <summary><span class="sum-left"><i class="fa-solid fa-right-left" aria-hidden="true"></i>Fluxo de
+          Talentos</span>
       </summary>
       <div class="accordion-content">
         <section class="grid grid-cols-1 xl:grid-cols-2 gap-6 fluxo-grid">
@@ -371,7 +396,8 @@
     <!-- Marca Empregadora -->
     <details class="accordion marca-wrap" data-category="marca">
       <summary>
-        <span class="sum-left"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i>Marca Empregadora — Engajamento no
+        <span class="sum-left"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i>Marca Empregadora — Engajamento
+          no
           LinkedIn</span>
       </summary>
       <div class="accordion-content">
@@ -413,7 +439,8 @@
             <div class="marca-head mt-6">
               <h3>Respostas a InMails</h3>
             </div>
-            <p class="marca-contexto">Respostas de InMails ÷ total de InMails enviados. Sem dados disponíveis no período
+            <p class="marca-contexto">Respostas de InMails ÷ total de InMails enviados. Sem dados disponíveis no
+              período
               (0 InMails enviados ao grupo).</p>
             <p class="text-sm italic text-sec">Dados não disponíveis — nenhum InMail foi enviado no período analisado.
             </p>
@@ -466,65 +493,25 @@
         <nav class="section-title" aria-label="Título da seção">
           <i class="section-title-icon fa-regular fa-lightbulb" aria-hidden="true"></i>
           <div class="section-title-text">
-            <span class="section-title-title">Talent Insights - Painel consolidado</span>
+            <span class="section-title-text">Talent Insights - Painel consolidado</span>
             <p class="section-title-subtitle">Insights de talentos em um painel unificado.</p>
           </div>
         </nav>
       </div>
+    </section>
 
-      <!-- Barra de filtros + ações -->
-      <section class="dashboard-toolbar" aria-label="Filtros do dashboard">
-        <div class="toolbar-fields">
-          <label class="toolbar-field">
-            <span>Palavra-chave</span>
-            <input id="filterKeyword" type="text" placeholder="Digite para pesquisar" />
-          </label>
-
-          <label class="toolbar-field">
-            <span>Período</span>
-            <input id="filterPeriod" type="month" />
-          </label>
-
-          <label class="toolbar-field">
-            <span>Categoria</span>
-            <select id="filterCategory">
-              <option value="">Todas</option>
-              <option value="geral">Visão Geral</option>
-              <option value="competenciasRG">Competências — Ranking geral</option>
-              <option value="competenciasTD">Competências tech e dados</option>
-              <option value="gaps">Gaps e Pressão</option>
-              <option value="demandaFutura">Demanda Futura</option>
-              <option value="desiguldadeGenero">Desigualdade de Gênero</option>
-              <option value="educacaoCE">Educação e Competências Emergentes</option>
-              <option value="qualidadeDados">Qualidade dos Dados</option>
-              <option value="inferenciasAvancadas">Inferências Avançadas</option>
-              <option value="alertasSugestoes">Alertas e Sugestões</option>
-            </select>
-          </label>
-        </div>
-
-        <div class="toolbar-actions">
-          <input id="importCsvInput" type="file" accept=".csv,text/csv" hidden />
-          <button id="exportCsvBtn" class="toolbar-btn primary" type="button">
-            <i class="fa-solid fa-file-export" aria-hidden="true"></i>
-            Exportar (.csv)
-          </button>
-        </div>
-      </section>
-
+    <details class="accordion" data-category="overview" open>
+      <summary class="overview-title">Visão Geral</summary>
       <section class="overview-block">
-        <h3 class="overview-title">Visão Geral</h3>
+
         <p class="overview-subtitle">
           KPIs resumem cobertura, soma de vagas e gap de gênero (média de ABS(feminino_pct - masculino_pct))
           antes dos gráficos específicos.
         </p>
-
         <!-- KPIs -->
         <div class="overview-kpis kpi-grid" id="overviewKpis"></div>
-
         <!-- Insights -->
         <div class="insights-grid" id="insightsGrid"></div>
-
         <!-- Como interpretar -->
         <article class="interpret-card">
           <h4>Como interpretar</h4>
@@ -533,16 +520,15 @@
             o objetivo não é reproduzir um PDF estático.
           </p>
         </article>
-
         <!-- Mini gráfico -->
         <div class="mini-chart-wrap">
           <canvas id="visaoGeralMiniChart"></canvas>
         </div>
       </section>
-    </section>
+    </details>
 
     <!-- Competências — Ranking geral -->
-    <details class="accordion competencias-ranking-wrap">
+    <details class="accordion competencias-ranking-wrap" data-category="competenciasRG" open>
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-table-list" aria-hidden="true"></i>
@@ -596,7 +582,7 @@
     </details>
 
     <!-- Competências tech e dados -->
-    <details class="accordion competencias-tech-wrap">
+    <details class="accordion competencias-tech-wrap" data-category="competenciasTD">
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-microchip" aria-hidden="true"></i>
@@ -637,7 +623,7 @@
     </details>
 
     <!-- Gaps e Pressão -->
-    <details class="accordion gaps-pressao-wrap">
+    <details class="accordion gaps-pressao-wrap" data-category="gaps">
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
@@ -700,7 +686,7 @@
     </details>
 
     <!-- Demanda Futura -->
-    <details class="accordion demanda-futura-wrap">
+    <details class="accordion demanda-futura-wrap" data-category="demandaFutura">
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
@@ -723,7 +709,7 @@
     </details>
 
     <!-- Desigualdade de Gênero -->
-    <details class="accordion desigualdade-genero-wrap">
+    <details class="accordion desigualdade-genero-wrap" data-category="desiguldadeGenero">
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-venus-mars" aria-hidden="true"></i>
@@ -774,7 +760,7 @@
     </details>
 
     <!-- Educação e Competências Emergentes -->
-    <details class="accordion educacao-emergentes-wrap">
+    <details class="accordion educacao-emergentes-wrap" data-category="educacaoCE">
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
@@ -836,7 +822,7 @@
     </details>
 
     <!-- Qualidade dos Dados -->
-    <details class="accordion qualidade-dados-wrap">
+    <details class="accordion qualidade-dados-wrap" data-category="qualidadeDados">
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-database" aria-hidden="true"></i>
@@ -945,7 +931,7 @@
     </details>
 
     <!-- Inferências Avançadas -->
-    <details class="accordion inferencias-avancadas-wrap">
+    <details class="accordion inferencias-avancadas-wrap" data-category="inferenciasAvancadas">
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-brain" aria-hidden="true"></i>
@@ -1033,7 +1019,7 @@
     </details>
 
     <!-- Alertas e Sugestões -->
-    <details class="accordion alertas-sugestoes-wrap">
+    <details class="accordion alertas-sugestoes-wrap" data-category="alertasSugestoes">
       <summary>
         <span class="sum-left">
           <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
@@ -1161,7 +1147,7 @@
     </div>
   </footer>
 
-  <script src="js/script.js"></script>
+  <script type="module" src="./js/app.js"></script>
 </body>
 
 </html>

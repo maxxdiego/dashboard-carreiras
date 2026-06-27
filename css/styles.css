@@ -1,3 +1,6 @@
+/* ==========================================================================
+   THEME TOKENS
+   ========================================================================== */
 :root,
 [data-theme="light"] {
   --bg-page: #fafafa;
@@ -66,10 +69,13 @@
 }
 
 :root {
-  --content-max: 1600px;
+  --content-max: 1220px;
   --page-gutter: clamp(24px, 7vw, 120px);
 }
 
+/* ==========================================================================
+   BASE / GLOBAL
+   ========================================================================== */
 * {
   box-sizing: border-box;
 }
@@ -101,33 +107,40 @@ body {
 .text-pri {
   color: var(--text-tertiary);
 }
+
 .text-sec {
   color: var(--text-secondary);
 }
 
-/* Hero */
+/* ==========================================================================
+   HERO
+   ========================================================================== */
 .hero-header {
-  background: var(--bg-page);
   position: relative;
+  background: var(--bg-page);
 }
+
 .hero-topbar-container,
 .hero-topbar {
   background: #7e3fd8;
 }
+
 .hero-topbar {
-  height: 50px;
+  height: 60px;
   color: #fff;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   padding: 0 18px;
 }
+
 .hero-topbar-left,
 .hero-topbar-right {
   display: flex;
   align-items: center;
   gap: 14px;
 }
+
 .hero-topbar-right {
   justify-content: flex-end;
 }
@@ -144,6 +157,7 @@ body {
   cursor: pointer;
   color: #fff;
 }
+
 .hero-icon-btn i {
   font-size: 18px;
   line-height: 1;
@@ -154,6 +168,7 @@ body {
   width: auto;
   display: block;
 }
+
 .hero-avatar {
   width: 34px;
   height: 34px;
@@ -167,12 +182,14 @@ body {
   height: 180px;
   overflow: hidden;
 }
+
 .hero-banner img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
+
 .hero-banner-edit {
   position: absolute;
   right: 8.5%;
@@ -203,49 +220,88 @@ body {
   gap: 8px;
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.15);
 }
+
 .hero-badge-title {
   font-size: 18px;
   font-weight: 300;
   line-height: 2;
 }
+
 .hero-badge-pencil {
   font-size: 18px;
   color: #fff;
 }
 
+.main-title-wrap {
+  min-height: 164px;
+  padding: 84px 0 0;
+}
+
+.main-title {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  line-height: 1.1;
+}
+
+.main-title-icon {
+  font-size: 38px;
+  color: var(--accent-primary);
+  margin-top: 4px;
+}
+
+.main-title-text {
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--accent-primary);
+}
+
+.main-title-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  padding-top: 0.5rem;
+}
+
 .section-title-wrap-1 {
-  min-height: 230px;
-  padding: 132px 0 0 0;
+  min-height: 94px;
+  padding: 32px 0 0;
 }
 
 .section-title-wrap-2 {
-  min-height: 170px;
-  padding: 60px 0 0 0;
+  min-height: 94px;
+  padding: 32px 0 0;
 }
+
 .section-title {
   display: flex;
   align-items: flex-start;
   gap: 20px;
   line-height: 1.1;
 }
+
 .section-title-icon {
-  font-size: 36px;
+  font-size: 24px;
   color: var(--accent-primary);
   margin-top: 4px;
 }
-.section-title-title {
-  font-size: 28px;
+
+.section-title-text {
+  font-size: 22px;
   font-weight: 600;
   color: var(--accent-primary);
 }
+
 .section-title-subtitle {
   margin: 0;
-  font-size: 16px;
+  font-size: 14px;
   color: var(--text-secondary);
   padding-top: 0.5rem;
 }
 
-/* ===== Toolbar de filtros ===== */
+/* ==========================================================================
+   TOOLBAR DE FILTROS
+   ========================================================================== */
 .dashboard-toolbar {
   background: var(--bg-card);
   border-radius: 10px;
@@ -256,6 +312,7 @@ body {
   align-items: flex-end;
   justify-content: space-between;
   border: 3px solid rgba(0, 0, 0, 0.04);
+  margin: 94px 0 0;
 }
 
 .toolbar-fields {
@@ -273,7 +330,6 @@ body {
 
 .toolbar-field span {
   font-size: 12px;
-  color: #4b5563;
   font-weight: 600;
   color: var(--text-secondary);
 }
@@ -345,7 +401,9 @@ body {
   }
 }
 
-/* Base cards */
+/* ==========================================================================
+   COMPONENTES BASE: CARDS / CHARTS / TABLE / ACCORDION
+   ========================================================================== */
 .kpi-card,
 .chart-card {
   background: var(--bg-card);
@@ -354,6 +412,7 @@ body {
   padding: 20px;
   box-shadow: var(--shadow-card);
 }
+
 .kpi-card {
   display: flex;
   flex-direction: column;
@@ -361,6 +420,7 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .kpi-label {
   color: var(--text-secondary);
   font-size: 13px;
@@ -368,6 +428,7 @@ body {
   letter-spacing: 0.4px;
   text-transform: uppercase;
 }
+
 .kpi-value {
   color: var(--text-tertiary);
   font-size: 28px;
@@ -382,6 +443,7 @@ body {
   color: var(--text-tertiary);
   margin-bottom: 4px;
 }
+
 .chart-subtitle {
   font-size: 12px;
   color: var(--text-secondary);
@@ -394,6 +456,7 @@ body {
   border-radius: 3px;
   overflow: hidden;
 }
+
 .progress-fill {
   height: 100%;
   background: var(--accent-primary);
@@ -407,6 +470,7 @@ body {
   border-radius: 8px;
   box-shadow: var(--shadow-card);
 }
+
 .accordion > summary {
   list-style: none;
   cursor: pointer;
@@ -419,9 +483,11 @@ body {
   border-left: 5px solid var(--accent-light-1);
   border-radius: 6px;
 }
+
 .accordion > summary::-webkit-details-marker {
   display: none;
 }
+
 .accordion > summary::after {
   content: "\f078";
   font-family: "Font Awesome 6 Free";
@@ -429,9 +495,11 @@ body {
   color: var(--text-secondary);
   transition: transform 0.2s ease;
 }
+
 .accordion[open] > summary::after {
   transform: rotate(180deg);
 }
+
 .accordion-content {
   padding: 0 18px 18px;
   border-top: 1px solid var(--border-divider);
@@ -442,6 +510,7 @@ body {
   align-items: center;
   gap: 10px;
 }
+
 .accordion > summary .sum-left i {
   color: var(--accent-primary);
   width: 18px;
@@ -455,6 +524,7 @@ body {
   border-spacing: 0;
   font-size: 13px;
 }
+
 .data-table thead th {
   text-align: left;
   font-size: 12px;
@@ -466,14 +536,17 @@ body {
   border-bottom: 1px solid var(--border-divider);
   background: var(--bg-card);
 }
+
 .data-table tbody td {
   padding: 14px 16px;
   border-bottom: 1px solid var(--border-divider);
   color: var(--text-tertiary);
 }
+
 .data-table tbody tr:hover {
   background: var(--bg-pill-light);
 }
+
 .data-table tbody tr:last-child td {
   border-bottom: none;
 }
@@ -484,6 +557,9 @@ body {
   overflow-x: hidden;
 }
 
+/* ==========================================================================
+   TAGS / STATUS / GROWTH
+   ========================================================================== */
 .tag-demand {
   display: inline-flex;
   border-radius: 999px;
@@ -494,18 +570,22 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .tag-muito-alta {
   background: rgba(16, 124, 16, 0.15);
   color: #107c10;
 }
+
 .tag-alto {
   background: rgba(126, 63, 216, 0.15);
   color: #581fa5;
 }
+
 .tag-moderada {
   background: rgba(0, 120, 212, 0.15);
   color: #0f6cbd;
 }
+
 .tag-baixo {
   background: rgba(160, 160, 160, 0.2);
   color: #5f5f5f;
@@ -515,27 +595,36 @@ body {
   color: #107c10;
   font-weight: 600;
 }
+
 .growth-neu {
   color: var(--text-secondary);
   font-weight: 600;
 }
+
 .growth-neg {
   color: #d13438;
   font-weight: 600;
 }
 
-/* Panorama */
+/* ==========================================================================
+   PANORAMA
+   ========================================================================== */
 .panorama-geral {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border-card, #e5e7eb);
+  border-radius: 12px;
+  background: var(--bg-card, #fff);
 }
+
 .panorama-title {
   margin: 0;
-  font-size: 22px;
+  font-size: 18px;
   font-weight: 700;
-  letter-spacing: 0.2px;
 }
+
 #kpiGrid .kpi-label {
   display: flex;
   align-items: center;
@@ -543,17 +632,20 @@ body {
   text-transform: none;
   letter-spacing: 0;
 }
+
 #kpiGrid .kpi-label i {
   font-size: 22px;
   min-width: 20px;
   color: var(--kpi-accent, var(--accent-primary));
 }
+
 #kpiGrid .kpi-title {
   font-size: 16px;
   font-weight: 600;
   line-height: 1.25;
   margin-top: -3px;
 }
+
 #kpiGrid .kpi-subtitle {
   color: var(--text-secondary);
   font-size: 14px;
@@ -564,23 +656,30 @@ body {
 #kpiGrid .kpi-card:nth-child(1) {
   --kpi-accent: #5b8def;
 }
+
 #kpiGrid .kpi-card:nth-child(2) {
   --kpi-accent: #9e6af9;
 }
+
 #kpiGrid .kpi-card:nth-child(3) {
   --kpi-accent: #f39c3d;
 }
+
 #kpiGrid .kpi-card:nth-child(4) {
   --kpi-accent: #00a389;
 }
+
 #kpiGrid .kpi-card:nth-child(5) {
   --kpi-accent: #e05aa3;
 }
+
 #kpiGrid .kpi-card:nth-child(6) {
   --kpi-accent: #7e3fd8;
 }
 
-/* Consolidação de wrappers/seções */
+/* ==========================================================================
+   CONSOLIDAÇÃO DE WRAPPERS / SEÇÕES
+   ========================================================================== */
 :is(
   .mercado-setores,
   .top-empresas-wrap,
@@ -596,6 +695,7 @@ body {
   border: 1px solid var(--border-card);
   border-radius: 12px;
 }
+
 :is(
     .mercado-setores,
     .top-empresas-wrap,
@@ -611,6 +711,7 @@ body {
   .accordion-content {
   padding: 14px 18px 18px;
 }
+
 :is(
   .mercado-inner,
   .top-inner,
@@ -627,6 +728,7 @@ body {
   background: transparent !important;
   padding: 8px 6px 0;
 }
+
 :is(
   .market-head,
   .top-head,
@@ -644,6 +746,7 @@ body {
   gap: 10px;
   margin-bottom: 8px;
 }
+
 :is(
     .market-head,
     .top-head,
@@ -661,6 +764,7 @@ body {
   font-size: 14px;
   line-height: 1;
 }
+
 :is(
   .cargos-subcopy,
   .genero-subcopy,
@@ -677,6 +781,7 @@ body {
   font-size: 14px;
   line-height: 1.45;
 }
+
 :is(.genero-chip, .fluxo-chip, .valorizam-chip) {
   margin-left: 8px;
   font-size: 12px;
@@ -684,26 +789,32 @@ body {
   color: var(--accent-primary);
 }
 
-/* Dimensões */
+/* ==========================================================================
+   DIMENSÕES DE CHARTS
+   ========================================================================== */
 .donut-wrap {
   height: 300px;
   min-height: 280px;
 }
+
 .top-chart-wrap,
 .fluxo-chart-wrap,
 .form-chart-wrap {
   height: 340px;
   min-height: 300px;
 }
+
 .cargos-chart-wrap,
 .valorizam-chart-wrap {
   height: 360px;
   min-height: 320px;
 }
+
 .genero-chart-wrap {
   height: 380px;
   min-height: 340px;
 }
+
 .comp-chart-wrap {
   height: 300px;
   min-height: 280px;
@@ -714,13 +825,16 @@ body {
   table-layout: fixed;
 }
 
-/* Competências tags */
+/* ==========================================================================
+   COMPETÊNCIAS TAGS
+   ========================================================================== */
 .comp-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 12px;
 }
+
 .comp-tag {
   border: 1px solid color-mix(in srgb, var(--accent-light-1) 45%, transparent);
   color: color-mix(in srgb, var(--accent-light-1) 85%, #1f2937);
@@ -730,7 +844,9 @@ body {
   font-size: 13px;
 }
 
-/* Marca Empregadora */
+/* ==========================================================================
+   MARCA EMPREGADORA
+   ========================================================================== */
 .marca-panel {
   background: var(--bg-card);
   border: 1px solid var(--border-card);
@@ -738,17 +854,20 @@ body {
   padding: 18px;
   box-shadow: var(--shadow-card);
 }
+
 .marca-head h3 {
   margin: 0;
   font-size: 22px;
   font-weight: 700;
   line-height: 1.25;
 }
+
 .marca-kpis {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
+
 .marca-kpi-item {
   border: 1px solid var(--border-card);
   border-radius: 10px;
@@ -759,13 +878,16 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+
 .marca-kpi-item.full {
   grid-column: 1 / -1;
 }
+
 .marca-kpi-top {
   display: flex;
   gap: 10px;
 }
+
 .marca-kpi-icon {
   width: 34px;
   height: 34px;
@@ -777,16 +899,19 @@ body {
   justify-content: center;
   color: var(--accent-primary);
 }
+
 .marca-kpi-title {
   font-size: 13px;
   font-weight: 700;
   color: var(--text-tertiary);
 }
+
 .marca-kpi-subtitle {
   font-size: 12px;
   color: var(--text-secondary);
   margin-top: 2px;
 }
+
 .marca-kpi-value {
   font-size: 34px;
   line-height: 1;
@@ -803,6 +928,7 @@ body {
   margin-bottom: 8px;
   font-size: 14px;
 }
+
 .taxa-row strong {
   color: var(--text-tertiary);
   font-size: 24px;
@@ -823,16 +949,20 @@ body {
   align-items: flex-start;
 }
 
-/* Perfis */
+/* ==========================================================================
+   PERFIS
+   ========================================================================== */
 .perfis-subcopy,
 .valorizam-subcopy {
   color: var(--text-secondary);
 }
+
 .perfis-cards {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 10px;
 }
+
 .perfil-card {
   border: 1px solid var(--border-card);
   border-left: 3px solid var(--accent-light-1);
@@ -841,6 +971,7 @@ body {
   padding: 12px 12px 10px;
   min-height: 108px;
 }
+
 .perfil-nome {
   display: flex;
   align-items: center;
@@ -849,31 +980,39 @@ body {
   font-weight: 700;
   margin-bottom: 4px;
 }
+
 .perfil-nome i {
   color: var(--accent-primary);
   font-size: 13px;
 }
+
 .perfil-cargo {
   font-size: 13px;
   color: var(--text-secondary);
   margin-bottom: 8px;
 }
+
 .perfil-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
   font-size: 12px;
 }
+
 .perfil-meta span {
   display: inline-flex;
   align-items: center;
   gap: 4px;
 }
+
 .perfil-meta i {
   color: var(--text-secondary);
   font-size: 11px;
 }
-/* Footer */
+
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
 .footer {
   background: #7e3fd8;
   color: #fff;
@@ -929,7 +1068,7 @@ body {
   background: rgba(255, 255, 255, 0.18);
 }
 
-/* CENTRALIZAÇÃO DOS "LINKS" (h4) */
+/* Centralização dos "links" (h4) */
 .footer-grid {
   display: flex;
   gap: 1rem;
@@ -949,9 +1088,9 @@ body {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  margin: 0; /* remove espaço extra */
+  margin: 0;
   line-height: 1.2;
-  white-space: nowrap; /* evita quebra de "Concurso Público" */
+  white-space: nowrap;
   text-align: center;
 }
 
@@ -969,7 +1108,39 @@ body {
   font-size: 12px;
 }
 
-/* Responsivo */
+/* ==========================================================================
+   RESPONSIVO (GLOBAL)
+   ========================================================================== */
+@media (max-width: 1200px) {
+  .perfis-cards {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1024px) {
+  .hero-badge {
+    left: 40px;
+    width: 170px;
+    height: 170px;
+    top: 142px;
+  }
+
+  .section-title-wrap {
+    padding-top: 150px;
+  }
+
+  .cargos-chart-wrap {
+    height: 320px;
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 900px) {
+  .perfis-cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 768px) {
   .footer-top {
     justify-content: center;
@@ -987,6 +1158,38 @@ body {
     column-gap: 20px;
     row-gap: 10px;
   }
+
+  .panorama-title {
+    font-size: 20px;
+  }
+
+  #kpiGrid .kpi-label i {
+    font-size: 18px;
+    min-width: 20px;
+  }
+
+  .top-chart-wrap {
+    height: 300px;
+  }
+
+  .hero-brand {
+    height: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .perfis-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-kpis.kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .as-kpi-grid,
+  .lf-kpi-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 480px) {
@@ -998,62 +1201,15 @@ body {
     white-space: normal;
   }
 }
-/* Responsive */
-@media (max-width: 1200px) {
-  .perfis-cards {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-@media (max-width: 1024px) {
-  .hero-badge {
-    left: 40px;
-    width: 170px;
-    height: 170px;
-    top: 142px;
-  }
-  .section-title-wrap {
-    padding-top: 150px;
-  }
-  .cargos-chart-wrap {
-    height: 320px;
-    min-height: 280px;
-  }
-}
-@media (max-width: 900px) {
-  .perfis-cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 768px) {
-  .panorama-title {
-    font-size: 20px;
-  }
-  #kpiGrid .kpi-label i {
-    font-size: 18px;
-    min-width: 20px;
-  }
-  .top-chart-wrap {
-    height: 300px;
-  }
 
-  .hero-brand {
-    height: 18px;
-  }
-}
-@media (max-width: 640px) {
-  .perfis-cards {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ===== Talent Insights (consolidado) ===== */
-
+/* ==========================================================================
+   TALENT INSIGHTS (CONSOLIDADO)
+   ========================================================================== */
 .overview-block {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
   background: var(--bg-card, #fff);
   padding: 16px;
-  margin-top: 2rem;
 }
 
 .overview-title {
@@ -1068,43 +1224,62 @@ body {
   font-size: 13px;
   color: var(--text-secondary, #6b7280);
 }
+
 /* KPIs */
-.overview-kpis.kpi-grid {
+/* ==========================================================================
+   OVERVIEW KPIs (estilo alinhado ao Panorama)
+   ========================================================================== */
+#overviewKpis.kpi-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr)); /* 4 cards por linha */
-  gap: 16px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
 }
 
-/* .overview-kpis.kpi-grid .talent-kpi-card:nth-child(4) {
-  grid-column: 1 / 2;
-} */
-
-.kpi-row-card {
-  border: 1px solid var(--border-card, #e5e7eb);
-  border-radius: 12px;
-  background: var(--bg-card, #fff);
-  padding: 12px 14px;
+#overviewKpis .kpi-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-transform: none;
+  letter-spacing: 0;
 }
 
-.kpi-row-label {
-  font-size: 12px;
-  color: var(--text-secondary, #6b7280);
-  margin-bottom: 4px;
+#overviewKpis .kpi-label i {
+  font-size: 22px;
+  min-width: 20px;
+  color: var(--kpi-accent, var(--accent-primary));
 }
 
-.kpi-row-value {
-  font-size: 33px;
-  line-height: 1;
-  font-weight: 800;
-  color: var(--text-tertiary, #111827);
+#overviewKpis .kpi-title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.25;
+  margin-top: -3px;
 }
 
-.kpi-row-note {
-  margin-top: 4px;
-  font-size: 12px;
-  color: var(--text-secondary, #6b7280);
+#overviewKpis .kpi-value {
+  margin-top: 8px;
 }
 
+#overviewKpis .kpi-subtitle {
+  color: var(--text-secondary);
+  font-size: 14px;
+  margin-top: 2px;
+  line-height: 1.35;
+}
+
+/* paleta por card (igual ideia do panorama) */
+#overviewKpis .kpi-card:nth-child(1) {
+  --kpi-accent: #5b8def;
+}
+#overviewKpis .kpi-card:nth-child(2) {
+  --kpi-accent: #9e6af9;
+}
+#overviewKpis .kpi-card:nth-child(3) {
+  --kpi-accent: #f39c3d;
+}
+#overviewKpis .kpi-card:nth-child(4) {
+  --kpi-accent: #e05aa3;
+}
 /* Insights */
 .insights-grid {
   display: grid;
@@ -1149,7 +1324,7 @@ body {
   margin-top: 10px;
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
-  background: var(--bg-soft, #f8fafc);
+  background: var(--bg-card, #f8fafc);
   padding: 10px 12px;
 }
 
@@ -1182,6 +1357,7 @@ body {
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
   min-height: 132px;
 }
+
 .talent-kpi-icon {
   width: 30px;
   height: 30px;
@@ -1220,13 +1396,9 @@ body {
   .overview-kpis.kpi-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
+
   .overview-kpis.kpi-grid .talent-kpi-card:nth-child(4) {
     grid-column: auto;
-  }
-}
-@media (max-width: 640px) {
-  .overview-kpis.kpi-grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -1240,7 +1412,9 @@ body {
   }
 }
 
-/* ===== Competências - Ranking Geral ===== */
+/* ==========================================================================
+   COMPETÊNCIAS - RANKING GERAL
+   ========================================================================== */
 .competencias-ranking-inner {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
@@ -1349,7 +1523,9 @@ body {
   }
 }
 
-/* ===== Competências tech e dados ===== */
+/* ==========================================================================
+   COMPETÊNCIAS TECH E DADOS
+   ========================================================================== */
 .competencias-tech-inner {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
@@ -1357,7 +1533,7 @@ body {
 }
 
 .competencias-tech-table-wrap {
-  max-height: 520px; /* ajuste fino de altura da área visível da tabela */
+  max-height: 520px;
 }
 
 .tech-table th,
@@ -1393,7 +1569,9 @@ body {
   font-weight: 700;
 }
 
-/* ===== Gaps e Pressão ===== */
+/* ==========================================================================
+   GAPS E PRESSÃO
+   ========================================================================== */
 .gaps-pressao-wrap .accordion-content > section {
   display: grid;
   grid-template-columns: 1fr !important;
@@ -1407,7 +1585,7 @@ body {
 }
 
 .gaps-table-wrap {
-  max-height: 520px; /* ajuste fino da altura visível */
+  max-height: 520px;
 }
 
 .gaps-table th,
@@ -1448,10 +1626,12 @@ body {
   background: rgba(239, 68, 68, 0.12);
   color: #dc2626;
 }
+
 .prio-media {
   background: rgba(245, 158, 11, 0.14);
   color: #b45309;
 }
+
 .prio-monitorar {
   background: rgba(59, 130, 246, 0.12);
   color: #2563eb;
@@ -1462,20 +1642,25 @@ body {
   background: rgba(239, 68, 68, 0.12);
   color: #dc2626;
 }
+
 .read-alta {
   background: rgba(249, 115, 22, 0.14);
   color: #c2410c;
 }
+
 .read-moderada {
   background: rgba(245, 158, 11, 0.14);
   color: #b45309;
 }
+
 .read-baixa {
   background: rgba(34, 197, 94, 0.12);
   color: #15803d;
 }
 
-/* ===== Demanda Futura ===== */
+/* ==========================================================================
+   DEMANDA FUTURA
+   ========================================================================== */
 .demanda-futura-card {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
@@ -1488,7 +1673,9 @@ body {
   height: 360px;
 }
 
-/* ===== Desigualdade de Gênero ===== */
+/* ==========================================================================
+   DESIGUALDADE DE GÊNERO
+   ========================================================================== */
 .genero-card {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
@@ -1526,12 +1713,15 @@ body {
 .genero-diff {
   font-weight: 700;
 }
+
 .genero-diff.high {
   color: #dc2626;
 }
+
 .genero-diff.mid {
   color: #f59e0b;
 }
+
 .genero-diff.low {
   color: #16a34a;
 }
@@ -1539,6 +1729,7 @@ body {
 .gender-split {
   min-width: 140px;
 }
+
 .gender-split-track {
   width: 140px;
   height: 10px;
@@ -1547,14 +1738,17 @@ body {
   background: #e5e7eb;
   display: flex;
 }
+
 .gender-split-f {
   background: #ec4899;
   height: 100%;
 }
+
 .gender-split-m {
   background: #38bdf8;
   height: 100%;
 }
+
 .gender-split-label {
   font-size: 11px;
   color: var(--text-secondary, #64748b);
@@ -1567,11 +1761,13 @@ body {
   }
 }
 
-/* Força layout em coluna única */
+/* ==========================================================================
+   STACK SINGLE COLUMN (CONSOLIDADO)
+   ========================================================================== */
 .stack-one-per-line {
   display: grid;
   grid-template-columns: 1fr !important;
-  gap: 16px;
+  gap: 24px;
 }
 
 .stack-one-per-line > article,
@@ -1587,7 +1783,9 @@ body {
   }
 }
 
-/* ===== Educação e Competências Emergentes ===== */
+/* ==========================================================================
+   EDUCAÇÃO E COMPETÊNCIAS EMERGENTES
+   ========================================================================== */
 .ee-card {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
@@ -1646,7 +1844,9 @@ body {
   border-color: rgba(234, 179, 8, 0.45);
 }
 
-/* ===== Qualidade dos Dados ===== */
+/* ==========================================================================
+   QUALIDADE DOS DADOS
+   ========================================================================== */
 .qd-card {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
@@ -1655,7 +1855,7 @@ body {
 
 .qd-chart-wrap {
   position: relative;
-  width: 100%;
+  width: 90%;
   height: 320px;
 }
 
@@ -1709,15 +1909,9 @@ body {
   color: #b45309;
 }
 
-.stack-one-per-line {
-  display: grid;
-  grid-template-columns: 1fr !important;
-  gap: 24px;
-}
-
-/* ===== Inferências Avançadas (fix overflow) ===== */
-
-/* 1) Permite que os cards encolham dentro da grid */
+/* ==========================================================================
+   INFERÊNCIAS AVANÇADAS (FIX OVERFLOW)
+   ========================================================================== */
 .inferencias-avancadas-wrap .grid > * {
   min-width: 0;
 }
@@ -1728,10 +1922,9 @@ body {
   background: var(--bg-card, #fff);
   width: 100%;
   max-width: 100%;
-  overflow: hidden; /* evita “vazar” para fora da página */
+  overflow: hidden;
 }
 
-/* 2) Gráficos sempre contidos */
 .ia-chart-wrap {
   position: relative;
   width: 100%;
@@ -1751,7 +1944,6 @@ body {
   height: 100% !important;
 }
 
-/* 3) Tabela com scroll horizontal controlado */
 .ia-table-wrap {
   max-height: 520px;
   max-width: 100%;
@@ -1759,28 +1951,24 @@ body {
   overflow-y: auto;
 }
 
-/* 4) Evita que a tabela estoure o card */
 .ia-table {
   width: 100%;
-  table-layout: fixed; /* distribui largura sem estourar */
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
-/* ajuste de texto: não travar tudo em uma linha */
 .ia-table th,
 .ia-table td {
-  white-space: normal;         /* antes estava nowrap */
-  overflow-wrap: anywhere;     /* quebra palavras longas */
+  white-space: normal;
+  overflow-wrap: anywhere;
   word-break: break-word;
 }
 
-/* 1ª coluna ainda com destaque, mas sem min-width rígido */
 .ia-table td:first-child {
   min-width: 0;
   white-space: normal;
 }
 
-/* colunas numéricas */
 .ia-table td:nth-child(2),
 .ia-table td:nth-child(3),
 .ia-table td:nth-child(4),
@@ -1789,7 +1977,9 @@ body {
   text-align: right;
 }
 
-/* ===== Alertas e Sugestões ===== */
+/* ==========================================================================
+   ALERTAS E SUGESTÕES
+   ========================================================================== */
 .as-card {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
@@ -1805,7 +1995,7 @@ body {
 .as-kpi-card {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
-  background: var(--bg-soft, #f8fafc);
+  background: var(--bg-card);
   padding: 12px;
 }
 
@@ -1818,7 +2008,7 @@ body {
 .as-kpi-value {
   font-size: 24px;
   font-weight: 800;
-  color: var(--text-primary, #0f172a);
+  color: var(--text-tertiary);
   line-height: 1.1;
 }
 
@@ -1855,14 +2045,17 @@ body {
   background: rgba(245, 158, 11, 0.15);
   color: #b45309;
 }
+
 .as-sev-media {
   background: rgba(249, 115, 22, 0.15);
   color: #c2410c;
 }
+
 .as-sev-alta {
   background: rgba(239, 68, 68, 0.15);
   color: #b91c1c;
 }
+
 .as-sev-critica {
   background: rgba(127, 29, 29, 0.15);
   color: #7f1d1d;
@@ -1878,13 +2071,10 @@ body {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-@media (max-width: 640px) {
-  .as-kpi-grid {
-    grid-template-columns: 1fr;
-  }
-}
 
-/* ===== Legenda das Fórmulas Calculadas ===== */
+/* ==========================================================================
+   LEGENDA DAS FÓRMULAS CALCULADAS
+   ========================================================================== */
 .lf-card {
   border: 1px solid var(--border-card, #e5e7eb);
   border-radius: 12px;
@@ -1938,7 +2128,7 @@ body {
   font-family:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
-  color: var(--text-primary, #0f172a);
+  color: var(--text-tertiary, #0f172a);
 }
 
 .lf-table td:nth-child(3) {
@@ -1961,18 +2151,22 @@ body {
   background: rgba(59, 130, 246, 0.15);
   color: #1d4ed8;
 }
+
 .lf-badge-pressao {
   background: rgba(245, 158, 11, 0.16);
   color: #b45309;
 }
+
 .lf-badge-genero {
   background: rgba(236, 72, 153, 0.16);
   color: #be185d;
 }
+
 .lf-badge-previsao {
   background: rgba(16, 185, 129, 0.16);
   color: #047857;
 }
+
 .lf-badge-gap {
   background: rgba(239, 68, 68, 0.14);
   color: #b91c1c;
@@ -1981,10 +2175,5 @@ body {
 @media (max-width: 1100px) {
   .lf-kpi-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-@media (max-width: 640px) {
-  .lf-kpi-grid {
-    grid-template-columns: 1fr;
   }
 }
