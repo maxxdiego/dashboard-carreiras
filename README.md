@@ -78,54 +78,6 @@ Este projeto consolida dados de talentos e mercado em uma interface interativa c
 
 ---
 
-## 📁 Organização Sugerida do Repositório
-
-```bash
-dashboard-cps-carreiras/
-├─ index.html
-├─ assets/
-│  ├─ css/
-│  │  ├─ base.css
-│  │  ├─ components.css
-│  │  ├─ sections/
-│  │  │  ├─ panorama.css
-│  │  │  ├─ talent-insights.css
-│  │  │  ├─ genero.css
-│  │  │  ├─ educacao.css
-│  │  │  ├─ qualidade-dados.css
-│  │  │  ├─ inferencias.css
-│  │  │  ├─ alertas.css
-│  │  │  └─ formulas.css
-│  ├─ js/
-│  │  ├─ data/
-│  │  │  ├─ panorama.data.js
-│  │  │  ├─ talent-insights.data.js
-│  │  │  ├─ genero.data.js
-│  │  │  ├─ qualidade-dados.data.js
-│  │  │  ├─ inferencias.data.js
-│  │  │  └─ ...
-│  │  ├─ core/
-│  │  │  ├─ theme.js
-│  │  │  ├─ formatters.js
-│  │  │  ├─ chart-registry.js
-│  │  │  └─ dom.js
-│  │  ├─ renderers/
-│  │  │  ├─ panorama.render.js
-│  │  │  ├─ overview.render.js
-│  │  │  ├─ genero.render.js
-│  │  │  ├─ qualidade-dados.render.js
-│  │  │  ├─ inferencias.render.js
-│  │  │  └─ ...
-│  │  └─ main.js
-├─ docs/
-│  ├─ regras-negocio.md
-│  ├─ dicionario-dados.md
-│  └─ formulas.md
-└─ README.md
-```
-
----
-
 ## 🚀 Como Executar Localmente
 
 1. Clone o repositório
@@ -165,32 +117,6 @@ dashboard-cps-carreiras/
 
 ---
 
-## 📊 Regras de Negócio (resumo)
-
-Principais campos derivados utilizados no dashboard:
-
-- `gap_vagas_talentos = anuncios_vaga - seus_talentos`
-- `vagas_por_1000_profissionais = (anuncios_vaga / profissionais) * 1000`
-- `talentos_internos_pct = (seus_talentos / profissionais) * 100`
-- `desigualdade_genero_pct = ABS(feminino_pct - masculino_pct)`
-- `demanda_futura = valor_atual + (valor_atual - valor_anterior)`
-- `lacunas_habilidades_pct = ((anuncios_vaga - seus_talentos) / anuncios_vaga) * 100`
-
----
-
-## 🧪 Qualidade e Validação
-
-Checklist mínimo antes de commit:
-
-- [ ] Sem overflow horizontal em cards/tabelas
-- [ ] Tabelas com quebra de linha para textos longos
-- [ ] Gráficos responsivos e com tema correto
-- [ ] Valores formatados em `pt-BR`
-- [ ] Estados vazios com mensagem amigável
-- [ ] Sem dados inventados em seções sem carga
-
----
-
 ## 🔒 Escopo da PoC
 
 Este projeto é uma prova de conceito para validação analítica e visual.  
@@ -200,30 +126,6 @@ Não representa ainda:
 - governança completa de acesso/permissão
 - SLA de atualização em tempo real
 
----
-
-## 🗺️ Roadmap (próximos passos)
-
-- Integração com fonte de dados automatizada
-- Filtros avançados por localidade/setor/período
-- Exportação de visões (PDF/CSV)
-- Monitoramento de qualidade de dados contínuo
-- Versão produtiva com observabilidade
-
----
-
-## 👥 Público-alvo
-
-- Gestão de talentos e RH
-- Lideranças de negócio
-- Planejamento estratégico
-- Times de dados e analytics
-
----
-
-## 📄 Licença
-
-Definir conforme política institucional do CPS Carreiras.
 
 ---
 
