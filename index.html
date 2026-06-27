@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carreiras 2026 — Dashboard Unidade</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <header class="hero-header">
+    <div class="hero-topbar-container">
+      <div class="hero-topbar page-wrap">
+        <div class="hero-topbar-left">
+          <button class="hero-icon-btn" aria-label="Menu"><i class="fa-solid fa-bars"></i></button>
+          <button class="hero-icon-btn" aria-label="Compartilhar"><i class="fa-solid fa-share-nodes"></i></button>
+          <button class="hero-icon-btn" aria-label="Buscar"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
+
+        <img class="hero-brand" src="assets/header-logo.png" alt="CARREIRAS" />
+
+        <div class="hero-topbar-right">
+          <button id="themeToggle" class="hero-icon-btn" aria-label="Tema">
+            <i id="iconSun" class="fa-regular fa-sun hidden"></i>
+            <i id="iconMoon" class="fa-solid fa-moon"></i>
+          </button>
+          <img class="hero-avatar is-clickable" src="assets/profile-icon.png" alt="Usuário" />
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-banner">
+      <img src="assets/header-banner.png" alt="Banner da Unidade" />
+      <i class="hero-banner-edit fa-solid fa-pen is-clickable" aria-hidden="true"></i>
+    </div>
+
+    <div class="hero-badge" aria-label="Logo da Unidade">
+      <div class="hero-badge-title">LOGO</div>
+      <i class="hero-badge-pencil fa-solid fa-pen is-clickable" aria-hidden="true"></i>
+    </div>
+  </header>
+
+  <main class="page-wrap py-8 space-y-6">
+
+    <!-- DASHBOARD DE CARREIRAS E EMPREGABILIDADE -->
+    <div class="section-title-wrap-1">
+      <nav class="section-title">
+        <i class="section-title-icon fa-solid fa-chart-line" aria-hidden="true"></i>
+        <div class="section-title-text">
+          <span class="section-title-title">Dashboard de Carreiras e Empregabilidade</span>
+          <p class="section-title-subtitle">Acompanhe indicadores-chave para embasar estratégias de carreira e
+            empregabilidade.</p>
+        </div>
+      </nav>
+    </div>
+
+    <!-- Barra de filtros + ações -->
+    <section class="dashboard-toolbar" aria-label="Filtros do dashboard">
+      <div class="toolbar-fields">
+        <label class="toolbar-field">
+          <span>Palavra-chave</span>
+          <input id="filterKeyword" type="text" placeholder="Digite para pesquisar" />
+        </label>
+
+        <label class="toolbar-field">
+          <span>Período</span>
+          <input id="filterPeriod" type="month" />
+        </label>
+
+        <label class="toolbar-field">
+          <span>Categoria</span>
+          <select id="filterCategory">
+            <option value="">Todas</option>
+            <option value="panorama">Panorama Geral</option>
+            <option value="mercado">Mercado de Trabalho</option>
+            <option value="empresas">Top Empresas</option>
+            <option value="cargos">Cargos</option>
+            <option value="genero">Distribuição de Gênero</option>
+            <option value="competencias">Competências</option>
+            <option value="formacao">Formação e Instituições</option>
+            <option value="fluxo">Fluxo de Talentos</option>
+            <option value="marca">Marca Empregadora</option>
+            <option value="valores">O que os Profissionais Valorizam</option>
+            <option value="perfis">Exemplos de Perfis</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="toolbar-actions">
+        <input id="importCsvInput" type="file" accept=".csv,text/csv" hidden />
+        <button id="exportCsvBtn" class="toolbar-btn primary" type="button">
+          <i class="fa-solid fa-file-export" aria-hidden="true"></i>
+          Exportar (.csv)
+        </button>
+      </div>
+    </section>
+
+    <!-- Panorama Geral -->
+    <section class="panorama-geral" data-category="panorama">
+      <h2 class="panorama-title">Panorama Geral</h2>
+      <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="kpiGrid"></section>
+    </section>
+
+    <!-- Mercado de Trabalho -->
+    <details class="accordion mercado-setores" data-category="mercado">
+      <summary>
+        <span class="sum-left"><i class="fa-solid fa-briefcase" aria-hidden="true"></i>Mercado de Trabalho —
+          Setores</span>
+      </summary>
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 xl:grid-cols-3 gap-6 mercado-grid">
+          <article class="chart-card mercado-inner xl:col-span-2">
+            <div class="market-head">
+              <div class="chart-title">Principais Setores - Nº de Profissionais</div>
+            </div>
+            <div class="chart-subtitle mb-4">
+              O setor corresponde à empresa indicada pelo profissional no LinkedIn.
+              Comércio varejista lidera com 35.943 profissionais; TI e Saúde vêm logo após.
+            </div>
+            <div class="donut-wrap">
+              <canvas id="setoresProfissionaisChart"></canvas>
+            </div>
+          </article>
+
+          <article class="chart-card mercado-inner">
+            <div class="market-head">
+              <div class="chart-title">Demanda de Contratações por Setor</div>
+            </div>
+            <div class="chart-subtitle mb-4">
+              A demanda baseia-se no nº médio de InMails enviados a profissionais deste setor
+              versus outros setores nos últimos 12 meses.
+            </div>
+            <div class="table-wrap-vertical">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Setor</th>
+                    <th>Demanda</th>
+                    <th>Vagas</th>
+                    <th>Cresc.</th>
+                  </tr>
+                </thead>
+                <tbody id="setoresTableBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Top Empresas -->
+    <details class="accordion top-empresas-wrap" data-category="empresas">
+      <summary>
+        <span class="sum-left"><i class="fa-solid fa-building" aria-hidden="true"></i>Top Empresas — Profissionais e
+          Rotatividade</span>
+      </summary>
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 xl:grid-cols-2 gap-6 top-empresas-grid">
+          <article class="chart-card top-inner">
+            <div class="top-head">
+              <div class="chart-title">Top Empresas — Profissionais</div>
+            </div>
+            <div class="chart-subtitle mb-4">
+              Empresa com cargo ativo indicado no perfil do LinkedIn. Crescimento:
+              variação % no nº de profissionais no último mês vs. um ano atrás.
+            </div>
+            <div class="top-chart-wrap"><canvas id="topEmpresasProfissionaisChart"></canvas></div>
+          </article>
+
+          <article class="chart-card top-inner">
+            <div class="top-head">
+              <div class="chart-title">Rotatividade vs. Crescimento — Top Empresas</div>
+            </div>
+            <div class="chart-subtitle mb-4">
+              Rotatividade = profissionais que saíram nos últimos 12 meses ÷ média de
+              funcionários no período. Estimativa pode ser menor que a real.
+            </div>
+            <div class="top-chart-wrap"><canvas id="rotatividadeCrescimentoChart"></canvas></div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Cargos -->
+    <details class="accordion cargos-wrap" data-category="cargos">
+      <summary><span class="sum-left"><i class="fa-solid fa-id-badge" aria-hidden="true"></i>Cargos</span></summary>
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 cargos-grid">
+          <article class="chart-card cargos-inner">
+            <div class="cargos-head">
+              <div class="chart-title">Cargos Mais Comuns</div>
+            </div>
+            <p class="cargos-subcopy">
+              Nº de profissionais com este cargo ativo no LinkedIn. Inclui anúncios de vaga
+              correspondentes de mais de 40.000 fontes globais.
+            </p>
+            <div class="cargos-chart-wrap"><canvas id="cargosComunsChart"></canvas></div>
+          </article>
+
+          <article class="chart-card cargos-inner">
+            <div class="cargos-head">
+              <div class="chart-title">Cargos em Crescimento (último ano)</div>
+            </div>
+            <p class="cargos-subcopy">
+              Variação % no nº de profissionais com este cargo ativo vs. mesmo período no ano
+              anterior. Cargos emergentes e de liderança lideram.
+            </p>
+            <div class="cargos-chart-wrap"><canvas id="cargosCrescimentoChart"></canvas></div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Distribuição de Gênero -->
+    <details class="accordion genero-wrap" data-category="genero">
+      <summary>
+        <span class="sum-left"><i class="fa-solid fa-venus-mars" aria-hidden="true"></i>Distribuição de Gênero —
+          Principais Cargos</span>
+      </summary>
+      <div class="accordion-content">
+        <article class="chart-card genero-inner">
+          <div class="genero-head">
+            <div class="chart-title">Distribuição de Gênero — Principais Cargos</div>
+            <span class="genero-chip">% do cargo</span>
+          </div>
+          <p class="genero-subcopy">
+            Desigualdade de gênero = diferença entre % feminino e % masculino.
+            Quanto mais próximo de 0%, mais equilibrada a distribuição 50:50.
+          </p>
+          <div class="genero-chart-wrap"><canvas id="generoPrincipaisCargosChart"></canvas></div>
+        </article>
+      </div>
+    </details>
+
+    <!-- Competências -->
+    <details class="accordion competencias-wrap" data-category="competencias">
+      <summary><span class="sum-left"><i class="fa-solid fa-screwdriver-wrench"
+            aria-hidden="true"></i>Competências</span></summary>
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-6 competencias-grid">
+          <article class="chart-card comp-inner">
+            <div class="comp-head">
+              <div class="chart-title">Competências Mais Comuns</div>
+            </div>
+            <p class="comp-subcopy">
+              Nº de profissionais que declararam esta competência no perfil LinkedIn.
+              As 10 principais competências do mercado de Campinas.
+            </p>
+            <div class="comp-tags">
+              <span class="comp-tag">Habilidades analíticas</span>
+              <span class="comp-tag">Análise de dados</span>
+              <span class="comp-tag">Ciclo PDCA</span>
+              <span class="comp-tag">Linhas de produção</span>
+              <span class="comp-tag">5S</span>
+              <span class="comp-tag">Sistemas operacionais</span>
+              <span class="comp-tag">Produtos SAP</span>
+              <span class="comp-tag">Gestão de vendas</span>
+              <span class="comp-tag">Análise financeira</span>
+              <span class="comp-tag">Melhoria contínua</span>
+            </div>
+            <div class="comp-chart-wrap"><canvas id="competenciasComunsChart"></canvas></div>
+          </article>
+
+          <article class="chart-card comp-inner">
+            <div class="comp-head">
+              <div class="chart-title">Competências em Crescimento (último ano)</div>
+            </div>
+            <p class="comp-subcopy">
+              Crescimento % no nº de profissionais com esta competência vs. ano anterior.
+              Destaque para Power BI, CRM, KPI e ferramentas digitais.
+            </p>
+            <div class="comp-chart-wrap"><canvas id="competenciasCrescimentoChart"></canvas></div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Formação e Instituições -->
+    <details class="accordion formacao-wrap" data-category="formacao">
+      <summary><span class="sum-left"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>Formação e
+          Instituições</span></summary>
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-6 formacao-grid">
+          <article class="chart-card form-inner">
+            <div class="form-head">
+              <div class="chart-title">Nível de Formação</div>
+            </div>
+            <p class="form-subcopy">
+              Maior nível de escolaridade declarado. Bacharelado domina (50%), seguido de Mestrado (21%) e MBA (19%).
+            </p>
+            <div class="form-chart-wrap"><canvas id="nivelFormacaoChart"></canvas></div>
+          </article>
+
+          <article class="chart-card form-inner">
+            <div class="form-head">
+              <div class="chart-title">Principais Áreas de Estudo</div>
+            </div>
+            <p class="form-subcopy">
+              Áreas informadas na seção Formação acadêmica do perfil LinkedIn.
+              Administração e Direito lideram, com forte presença de TI e RH.
+            </p>
+            <div class="form-chart-wrap"><canvas id="areasEstudoChart"></canvas></div>
+          </article>
+
+          <article class="chart-card form-inner">
+            <div class="form-head">
+              <div class="chart-title">Principais Instituições de Ensino</div>
+            </div>
+            <p class="form-subcopy">
+              Instituições onde os profissionais estudaram (seção Formação).
+              Recém-formados = data de formatura nos últimos 12 meses.
+            </p>
+            <div class="table-wrap-vertical form-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Instituição</th>
+                    <th>Profis.</th>
+                    <th>Recém-form.</th>
+                  </tr>
+                </thead>
+                <tbody id="instituicoesBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Fluxo de Talentos -->
+    <details class="accordion fluxo-wrap" data-category="fluxo">
+      <summary><span class="sum-left"><i class="fa-solid fa-right-left" aria-hidden="true"></i>Fluxo de Talentos</span>
+      </summary>
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 xl:grid-cols-2 gap-6 fluxo-grid">
+          <article class="chart-card fluxo-inner">
+            <div class="fluxo-head">
+              <div class="chart-title">Movimentação por Localidade — Saldo (12 meses)</div>
+            </div>
+            <p class="fluxo-subcopy">
+              Saldo = talentos ganhos − talentos perdidos em relação a Campinas.
+              <strong style="color:#0ea5e9;">Azul = ganho</strong>,
+              <strong style="color:#ef4444;">Vermelho = perda</strong>.
+              São Paulo é o maior destino e também a maior origem.
+            </p>
+            <div class="fluxo-chart-wrap"><canvas id="fluxoLocalidadeChart"></canvas></div>
+          </article>
+
+          <article class="chart-card fluxo-inner">
+            <div class="fluxo-head">
+              <div class="chart-title">Movimentação por Setor — Saldo</div>
+              <span class="fluxo-chip">Setor: Comércio varejista</span>
+            </div>
+            <p class="fluxo-subcopy">
+              Mudanças de setor identificadas quando o profissional sai de uma empresa e inicia em outra de setor
+              diferente.
+              Referência: setor Comércio varejista.
+            </p>
+            <div class="fluxo-chart-wrap"><canvas id="fluxoSetorChart"></canvas></div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Marca Empregadora -->
+    <details class="accordion marca-wrap" data-category="marca">
+      <summary>
+        <span class="sum-left"><i class="fa-solid fa-bullhorn" aria-hidden="true"></i>Marca Empregadora — Engajamento no
+          LinkedIn</span>
+      </summary>
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 xl:grid-cols-2 gap-6 marca-grid">
+          <article class="marca-panel">
+            <div class="marca-head">
+              <h3>Como os Talentos Interagiram com a Organização</h3>
+            </div>
+            <p class="marca-contexto">Dados associados ao <strong>Centro Paula Souza</strong> no LinkedIn. Período:
+              mai/2025 a abr/2026.</p>
+            <div class="marca-kpis" id="engajamentoGrid"></div>
+          </article>
+
+          <article class="marca-panel">
+            <div class="marca-head">
+              <h3>Taxa de Candidatura nas Vagas</h3>
+            </div>
+            <p class="marca-contexto">
+              Taxa de visualizações visando candidatura = cliques no botão “Candidate-se” ÷ visualizações da vaga.
+              Média de 1 ano da plataforma: 50%.
+            </p>
+
+            <div class="taxa-row"><span>Taxa atual da organização</span><strong>67%</strong></div>
+            <div class="progress-bar mb-3">
+              <div class="progress-fill" style="width:67%"></div>
+            </div>
+
+            <div class="taxa-row"><span>Média da plataforma (1 ano)</span><strong>50%</strong></div>
+            <div class="progress-bar mb-4">
+              <div class="progress-fill" style="width:50%;opacity:.65"></div>
+            </div>
+
+            <div class="marca-alerta">
+              <i class="fa-solid fa-circle-arrow-up"></i>
+              A organização está <strong>17 pontos percentuais acima</strong> da média da plataforma em taxa de
+              candidatura.
+            </div>
+
+            <div class="marca-head mt-6">
+              <h3>Respostas a InMails</h3>
+            </div>
+            <p class="marca-contexto">Respostas de InMails ÷ total de InMails enviados. Sem dados disponíveis no período
+              (0 InMails enviados ao grupo).</p>
+            <p class="text-sm italic text-sec">Dados não disponíveis — nenhum InMail foi enviado no período analisado.
+            </p>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- O que os Profissionais Valorizam -->
+    <details class="accordion valorizam-wrap" data-category="valores">
+      <summary><span class="sum-left"><i class="fa-solid fa-star" aria-hidden="true"></i>O que os Profissionais
+          Valorizam</span></summary>
+      <div class="accordion-content">
+        <article class="chart-card valorizam-inner">
+          <div class="valorizam-head">
+            <div class="chart-title">Propostas de Valor por Ordem de Importância</div>
+            <span class="valorizam-chip">94 participantes da pesquisa</span>
+          </div>
+          <p class="valorizam-subcopy">
+            Pesquisa enviada a milhões de usuários do LinkedIn. Os participantes selecionaram os
+            5 principais fatores ao avaliar nova oportunidade.
+            <strong>% de consenso</strong> = proporção que escolheu aquele fator entre os 5 principais.
+          </p>
+          <div class="valorizam-chart-wrap"><canvas id="propostasValorChart"></canvas></div>
+        </article>
+      </div>
+    </details>
+
+    <!-- Perfis -->
+    <details class="accordion perfis-wrap" data-category="perfis">
+      <summary><span class="sum-left"><i class="fa-solid fa-users" aria-hidden="true"></i>Exemplos de Perfis de
+          Profissionais da Região</span></summary>
+      <div class="accordion-content">
+        <article class="chart-card perfis-inner">
+          <div class="perfis-head">
+            <div class="chart-title">Amostra de Perfis — Campinas e Região</div>
+          </div>
+          <p class="perfis-subcopy">
+            Exemplos ilustrativos de profissionais da região. Representam o nível de senioridade
+            e diversidade de trajetórias em Campinas.
+          </p>
+          <div id="perfisGrid" class="perfis-cards"></div>
+        </article>
+      </div>
+    </details>
+
+    <!-- ===== Talent Insights - Painel consolidado ===== -->
+    <section class="talent-insights-section" id="talentInsightsSection">
+      <div class="section-title-wrap-2">
+        <nav class="section-title" aria-label="Título da seção">
+          <i class="section-title-icon fa-regular fa-lightbulb" aria-hidden="true"></i>
+          <div class="section-title-text">
+            <span class="section-title-title">Talent Insights - Painel consolidado</span>
+            <p class="section-title-subtitle">Insights de talentos em um painel unificado.</p>
+          </div>
+        </nav>
+      </div>
+
+      <!-- Barra de filtros + ações -->
+      <section class="dashboard-toolbar" aria-label="Filtros do dashboard">
+        <div class="toolbar-fields">
+          <label class="toolbar-field">
+            <span>Palavra-chave</span>
+            <input id="filterKeyword" type="text" placeholder="Digite para pesquisar" />
+          </label>
+
+          <label class="toolbar-field">
+            <span>Período</span>
+            <input id="filterPeriod" type="month" />
+          </label>
+
+          <label class="toolbar-field">
+            <span>Categoria</span>
+            <select id="filterCategory">
+              <option value="">Todas</option>
+              <option value="geral">Visão Geral</option>
+              <option value="competenciasRG">Competências — Ranking geral</option>
+              <option value="competenciasTD">Competências tech e dados</option>
+              <option value="gaps">Gaps e Pressão</option>
+              <option value="demandaFutura">Demanda Futura</option>
+              <option value="desiguldadeGenero">Desigualdade de Gênero</option>
+              <option value="educacaoCE">Educação e Competências Emergentes</option>
+              <option value="qualidadeDados">Qualidade dos Dados</option>
+              <option value="inferenciasAvancadas">Inferências Avançadas</option>
+              <option value="alertasSugestoes">Alertas e Sugestões</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="toolbar-actions">
+          <input id="importCsvInput" type="file" accept=".csv,text/csv" hidden />
+          <button id="exportCsvBtn" class="toolbar-btn primary" type="button">
+            <i class="fa-solid fa-file-export" aria-hidden="true"></i>
+            Exportar (.csv)
+          </button>
+        </div>
+      </section>
+
+      <section class="overview-block">
+        <h3 class="overview-title">Visão Geral</h3>
+        <p class="overview-subtitle">
+          KPIs resumem cobertura, soma de vagas e gap de gênero (média de ABS(feminino_pct - masculino_pct))
+          antes dos gráficos específicos.
+        </p>
+
+        <!-- KPIs -->
+        <div class="overview-kpis kpi-grid" id="overviewKpis"></div>
+
+        <!-- Insights -->
+        <div class="insights-grid" id="insightsGrid"></div>
+
+        <!-- Como interpretar -->
+        <article class="interpret-card">
+          <h4>Como interpretar</h4>
+          <p>
+            A PoC segue orientação da wiki: o Excel alimenta uma página web analítica;
+            o objetivo não é reproduzir um PDF estático.
+          </p>
+        </article>
+
+        <!-- Mini gráfico -->
+        <div class="mini-chart-wrap">
+          <canvas id="visaoGeralMiniChart"></canvas>
+        </div>
+      </section>
+    </section>
+
+    <!-- Competências — Ranking geral -->
+    <details class="accordion competencias-ranking-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-table-list" aria-hidden="true"></i>
+          Competências — Ranking geral
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <article class="chart-card competencias-ranking-inner">
+          <div class="ranking-head">
+            <div class="chart-title">Ranking geral de competências</div>
+          </div>
+
+          <p class="chart-subtitle mb-4">
+            Tabela consolidada com profissionais, vagas, talentos internos, gap, pressão relativa (vagas/1.000)
+            e distribuição de gênero.
+          </p>
+
+          <div class="table-wrap-vertical">
+            <table class="data-table ranking-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Competência</th>
+                  <th>Profissionais</th>
+                  <th>% Total</th>
+                  <th>Vagas</th>
+                  <th>Talentos internos</th>
+                  <th>Gap</th>
+                  <th>Vagas/1.000</th>
+                  <th>Gênero</th>
+                </tr>
+              </thead>
+              <tbody id="competenciasRankingBody"></tbody>
+            </table>
+          </div>
+
+          <div class="ranking-pagination" id="rankingPagination">
+            <button type="button" class="page-btn" data-action="first">«</button>
+            <button type="button" class="page-btn" data-action="prev">‹</button>
+
+            <div class="page-numbers" id="rankingPageNumbers"></div>
+
+            <button type="button" class="page-btn" data-action="next">›</button>
+            <button type="button" class="page-btn" data-action="last">»</button>
+          </div>
+
+          <div class="ranking-page-info" id="rankingPageInfo"></div>
+        </article>
+      </div>
+    </details>
+
+    <!-- Competências tech e dados -->
+    <details class="accordion competencias-tech-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+          Competências tech e dados
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <article class="chart-card competencias-tech-inner">
+          <div class="ranking-head">
+            <div class="chart-title">Competências tech e dados — Ranking recortado</div>
+          </div>
+
+          <p class="chart-subtitle mb-4">
+            Recorte técnico com foco em skills de tecnologia e dados.
+          </p>
+
+          <div class="table-wrap-vertical competencias-tech-table-wrap">
+            <table class="data-table ranking-table tech-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Competência</th>
+                  <th>Profissionais</th>
+                  <th>% Total</th>
+                  <th>Vagas</th>
+                  <th>Talentos internos</th>
+                  <th>Gap</th>
+                  <th>Vagas/1.000</th>
+                  <th>Gênero</th>
+                </tr>
+              </thead>
+              <tbody id="competenciasTechBody"></tbody>
+            </table>
+          </div>
+        </article>
+      </div>
+    </details>
+
+    <!-- Gaps e Pressão -->
+    <details class="accordion gaps-pressao-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+          Gaps e Pressão
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 gap-6">
+          <!-- Tabela 1: Maiores gaps -->
+          <article class="chart-card gaps-card">
+            <div class="chart-title">Maiores gaps</div>
+            <p class="chart-subtitle mb-4">
+              Diferença entre demanda (vagas) e talentos internos por competência.
+            </p>
+
+            <div class="table-wrap-vertical gaps-table-wrap">
+              <table class="data-table gaps-table">
+                <thead>
+                  <tr>
+                    <th>Competência</th>
+                    <th>Vagas</th>
+                    <th>Talentos internos</th>
+                    <th>Gap</th>
+                    <th>Profissionais</th>
+                    <th>Pressão</th>
+                    <th>Prioridade</th>
+                  </tr>
+                </thead>
+                <tbody id="maioresGapsBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Tabela 2: Pressão de contratação -->
+          <article class="chart-card gaps-card">
+            <div class="chart-title">Pressão de contratação</div>
+            <p class="chart-subtitle mb-4">
+              Ranking por vagas a cada 1.000 profissionais e leitura de criticidade.
+            </p>
+
+            <div class="table-wrap-vertical gaps-table-wrap">
+              <table class="data-table gaps-table">
+                <thead>
+                  <tr>
+                    <th>Competência</th>
+                    <th>Vagas/1.000</th>
+                    <th>Vagas</th>
+                    <th>Profissionais</th>
+                    <th>Talentos internos</th>
+                    <th>Leitura</th>
+                  </tr>
+                </thead>
+                <tbody id="pressaoContratacaoBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Demanda Futura -->
+    <details class="accordion demanda-futura-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-chart-line" aria-hidden="true"></i>
+          Demanda Futura
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <article class="chart-card demanda-futura-card">
+          <div class="chart-title">Demanda Futura por competência</div>
+          <p class="chart-subtitle mb-4">
+            Projeção linear simples: valor atual + (valor atual - valor anterior).
+          </p>
+
+          <div class="demanda-futura-chart-wrap">
+            <canvas id="demandaFuturaChart"></canvas>
+          </div>
+        </article>
+      </div>
+    </details>
+
+    <!-- Desigualdade de Gênero -->
+    <details class="accordion desigualdade-genero-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-venus-mars" aria-hidden="true"></i>
+          Desigualdade de Gênero
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 gap-6 stack-one-per-line">
+          <!-- Gráfico -->
+          <article class="chart-card genero-card">
+            <div class="chart-title">Distribuição de Gênero — Principais cargos</div>
+            <p class="chart-subtitle mb-4">
+              Desigualdade de gênero = diferença entre % feminino e % masculino.
+              Quanto mais próximo de 0%, mais equilibrada a distribuição 50/50.
+            </p>
+            <div class="genero-chart-wrap">
+              <canvas id="distribuicaoGeneroChart"></canvas>
+            </div>
+          </article>
+
+          <!-- Tabela -->
+          <article class="chart-card genero-card">
+            <div class="chart-title">Distribuição por gênero</div>
+            <p class="chart-subtitle mb-4">
+              Competências com maior diferença percentual entre feminino e masculino.
+            </p>
+
+            <div class="table-wrap-vertical genero-table-wrap">
+              <table class="data-table genero-table">
+                <thead>
+                  <tr>
+                    <th>Competência</th>
+                    <th>Profissionais</th>
+                    <th>Feminino</th>
+                    <th>Masculino</th>
+                    <th>Diferença</th>
+                    <th>Distribuição</th>
+                    <th>Vagas</th>
+                  </tr>
+                </thead>
+                <tbody id="generoDistribuicaoBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Educação e Competências Emergentes -->
+    <details class="accordion educacao-emergentes-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-graduation-cap" aria-hidden="true"></i>
+          Educação e Competências Emergentes
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 gap-6">
+          <!-- Tabela: Áreas de estudo -->
+          <article class="chart-card ee-card">
+            <div class="chart-title">Áreas de estudo</div>
+            <p class="chart-subtitle mb-4">
+              Percentual de recém-formados calculado por:
+              |$(\text{recém-formados} / \text{profissionais}) \times 100$|.
+            </p>
+
+            <div class="table-wrap-vertical ee-table-wrap">
+              <table class="data-table ee-table">
+                <thead>
+                  <tr>
+                    <th>Área de estudo</th>
+                    <th>Profissionais</th>
+                    <th>Recém-formados</th>
+                    <th>% Recém-formados</th>
+                    <th>Suas contratações</th>
+                  </tr>
+                </thead>
+                <tbody id="areasEstudoBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Tabela: Competências emergentes -->
+          <article class="chart-card ee-card">
+            <div class="chart-title">Competências emergentes</div>
+            <p class="chart-subtitle mb-4">
+              A carga atual trouxe esta aba apenas com cabeçalho; o bloco será preenchido automaticamente
+              quando houver dados de crescimento anual.
+            </p>
+
+            <div class="table-wrap-vertical ee-table-wrap">
+              <table class="data-table ee-table">
+                <thead>
+                  <tr>
+                    <th>Competência</th>
+                    <th>Crescimento anual</th>
+                    <th>Profissionais</th>
+                    <th>Vagas</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="competenciasEmergentesBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Qualidade dos Dados -->
+    <details class="accordion qualidade-dados-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-database" aria-hidden="true"></i>
+          Qualidade dos Dados
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 gap-6 stack-one-per-line">
+          <!-- Gráfico 1: Cobertura por status -->
+          <article class="chart-card qd-card">
+            <div class="chart-title">Cobertura das abas — por status</div>
+            <p class="chart-subtitle mb-4">
+              Distribuição entre abas com dados, metadados e somente cabeçalho.
+            </p>
+            <div class="qd-chart-wrap">
+              <canvas id="qdCoberturaStatusChart"></canvas>
+            </div>
+          </article>
+
+          <!-- Gráfico 2: Linhas úteis por aba -->
+          <article class="chart-card qd-card">
+            <div class="chart-title">Linhas úteis por aba</div>
+            <p class="chart-subtitle mb-4">
+              Quantidade de linhas úteis por aba carregada na PoC.
+            </p>
+            <div class="qd-chart-wrap qd-chart-wrap-tall">
+              <canvas id="qdLinhasAbaChart"></canvas>
+            </div>
+          </article>
+
+          <!-- Tabela: Cobertura das abas -->
+          <article class="chart-card qd-card">
+            <div class="chart-title">Cobertura das abas</div>
+            <div class="table-wrap-vertical qd-table-wrap">
+              <table class="data-table qd-table">
+                <thead>
+                  <tr>
+                    <th>Status</th>
+                    <th>Aba</th>
+                    <th>Linhas úteis</th>
+                  </tr>
+                </thead>
+                <tbody id="qdCoberturaBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Tabela: Duplicidades -->
+          <article class="chart-card qd-card">
+            <div class="chart-title">Duplicidades</div>
+            <div class="table-wrap-vertical qd-table-wrap">
+              <table class="data-table qd-table">
+                <thead>
+                  <tr>
+                    <th>Entidade</th>
+                    <th>Tipo</th>
+                    <th>Registros</th>
+                    <th>Rankings</th>
+                    <th>Profissionais somados</th>
+                    <th>Vagas somadas</th>
+                    <th>Talentos somados</th>
+                  </tr>
+                </thead>
+                <tbody id="qdDuplicidadesBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Tabela: Logs de importação -->
+          <article class="chart-card qd-card">
+            <div class="chart-title">Logs de importação</div>
+            <div class="table-wrap-vertical qd-table-wrap">
+              <table class="data-table qd-table">
+                <thead>
+                  <tr>
+                    <th>Nível</th>
+                    <th>Origem</th>
+                    <th>Mensagem</th>
+                  </tr>
+                </thead>
+                <tbody id="qdLogsBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Tabela: Roadmap de módulos -->
+          <article class="chart-card qd-card">
+            <div class="chart-title">Roadmap de módulos (status da carga atual)</div>
+            <div class="table-wrap-vertical qd-table-wrap">
+              <table class="data-table qd-table">
+                <thead>
+                  <tr>
+                    <th>Módulo</th>
+                    <th>Descrição</th>
+                    <th>Status</th>
+                    <th>Linhas</th>
+                  </tr>
+                </thead>
+                <tbody id="qdRoadmapBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Inferências Avançadas -->
+    <details class="accordion inferencias-avancadas-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-brain" aria-hidden="true"></i>
+          Inferências Avançadas
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 gap-6 stack-one-per-line">
+
+          <!-- 1) Lacunas - gráfico -->
+          <article class="chart-card ia-card">
+            <div class="chart-title">Lacunas de habilidades (Gap % x Vagas normalizadas)</div>
+            <p class="chart-subtitle mb-4">
+              Fórmula: ((anuncios_vaga - seus_talentos) / anuncios_vaga) × 100.
+            </p>
+            <div class="ia-chart-wrap">
+              <canvas id="iaLacunasChart"></canvas>
+            </div>
+          </article>
+
+          <!-- 2) Lacunas - tabela -->
+          <article class="chart-card ia-card">
+            <div class="chart-title">Tabela de lacunas</div>
+            <div class="table-wrap-vertical ia-table-wrap">
+              <table class="data-table ia-table">
+                <thead>
+                  <tr>
+                    <th>Competência</th>
+                    <th>Vagas</th>
+                    <th>Talentos internos</th>
+                    <th>Gap bruto</th>
+                    <th>Lacuna (%)</th>
+                    <th>Vagas normalizadas</th>
+                  </tr>
+                </thead>
+                <tbody id="iaLacunasBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- 3) Roteiros -->
+          <article class="chart-card ia-card">
+            <div class="chart-title">Roteiros de ação (Gap + Rotatividade)</div>
+            <p class="chart-subtitle mb-4">
+              Score de prioridade combina lacuna percentual e pressão de contratação (proxy de rotatividade).
+            </p>
+            <div class="ia-chart-wrap">
+              <canvas id="iaRoteirosChart"></canvas>
+            </div>
+          </article>
+
+          <!-- 4) Clusters -->
+          <article class="chart-card ia-card">
+            <div class="chart-title">Clusters de competências (k-means)</div>
+            <p class="chart-subtitle mb-4">
+              Segmentação por profissionais, vagas e desigualdade de gênero.
+            </p>
+            <div class="ia-chart-wrap ia-chart-wrap-tall">
+              <canvas id="iaClustersChart"></canvas>
+            </div>
+          </article>
+
+          <!-- 5) Tabela clusters -->
+          <article class="chart-card ia-card">
+            <div class="chart-title">Resumo dos clusters</div>
+            <div class="table-wrap-vertical ia-table-wrap">
+              <table class="data-table ia-table">
+                <thead>
+                  <tr>
+                    <th>Cluster</th>
+                    <th>Membros</th>
+                    <th>Profissionais médios</th>
+                    <th>Vagas médias</th>
+                    <th>Desigualdade média</th>
+                  </tr>
+                </thead>
+                <tbody id="iaClustersBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+        </section>
+      </div>
+    </details>
+
+    <!-- Alertas e Sugestões -->
+    <details class="accordion alertas-sugestoes-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+          Alertas e Sugestões
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 gap-6 stack-one-per-line">
+          <!-- KPIs -->
+          <article class="chart-card as-card">
+            <div class="chart-title">Resumo de alertas</div>
+            <p class="chart-subtitle mb-4">
+              Alertas por violação de threshold de gênero e por abas sem dados carregados.
+            </p>
+
+            <div class="as-kpi-grid" id="asKpiGrid"></div>
+          </article>
+
+          <!-- Alertas de gênero -->
+          <article class="chart-card as-card">
+            <div class="chart-title">Alertas de gênero</div>
+            <div class="table-wrap-vertical as-table-wrap">
+              <table class="data-table as-table">
+                <thead>
+                  <tr>
+                    <th>Competência</th>
+                    <th>Gap de gênero</th>
+                    <th>Severidade</th>
+                    <th>Mensagem</th>
+                  </tr>
+                </thead>
+                <tbody id="asGeneroBody"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <!-- Alertas de dados -->
+          <article class="chart-card as-card">
+            <div class="chart-title">Alertas de dados</div>
+            <div class="table-wrap-vertical as-table-wrap">
+              <table class="data-table as-table">
+                <thead>
+                  <tr>
+                    <th>Módulo</th>
+                    <th>Status</th>
+                    <th>Mensagem</th>
+                  </tr>
+                </thead>
+                <tbody id="asDadosBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+    <!-- Legenda das Fórmulas Calculadas -->
+    <details class="accordion legenda-formulas-wrap">
+      <summary>
+        <span class="sum-left">
+          <i class="fa-solid fa-square-root-variable" aria-hidden="true"></i>
+          Legenda das Fórmulas Calculadas
+        </span>
+      </summary>
+
+      <div class="accordion-content">
+        <section class="grid grid-cols-1 gap-6 stack-one-per-line">
+          <!-- Resumo -->
+          <p class="chart-subtitle mt-4">
+            Inclui a referência direta para cada campo derivado utilizado nos indicadores e gráficos.
+          </p>
+
+          <!-- Tabela -->
+          <article class="chart-card lf-card">
+            <div class="chart-title">Dicionário de fórmulas</div>
+
+            <div class="table-wrap-vertical lf-table-wrap">
+              <table class="data-table lf-table">
+                <thead>
+                  <tr>
+                    <th>Campo derivado</th>
+                    <th>Fórmula</th>
+                    <th>Interpretação</th>
+                  </tr>
+                </thead>
+                <tbody id="legendaFormulasBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </div>
+    </details>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-container page-wrap">
+
+      <img class="footer-logo" src="assets/footer-logo.png" alt="Carreiras 2026" />
+
+      <div class="footer-grid page-wrap">
+        <div class="footer-col">
+          <h4>Centro Paula Souza</h4>
+        </div>
+        <div class="footer-col">
+          <h4>Ouvidoria</h4>
+        </div>
+        <div class="footer-col">
+          <h4>Transparência</h4>
+        </div>
+        <div class="footer-col">
+          <h4>SIC</h4>
+        </div>
+        <div class="footer-col">
+          <h4>Concurso Público</h4>
+        </div>
+      </div>
+      <div class="footer-social" aria-label="Redes sociais">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Twitter / X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
