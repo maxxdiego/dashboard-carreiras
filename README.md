@@ -1,7 +1,6 @@
 # Dashboard CPS Carreiras (PoC)
 
-### 🌐 Acesso:
-[https://maxxdiego.github.io/dashboard-carreiras](https://maxxdiego.github.io/dashboard-carreiras)
+🌐 Acesso: [https://maxxdiego.github.io/dashboard-carreiras](https://maxxdiego.github.io/dashboard-carreiras)
 
 ## Introdução
 
